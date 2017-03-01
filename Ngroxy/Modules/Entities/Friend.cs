@@ -11,6 +11,7 @@
 #endregion
 
 using System.ComponentModel.DataAnnotations.Schema;
+using JetBrains.Annotations;
 
 namespace Ngroxy.Modules.Entities
 {
@@ -30,12 +31,13 @@ namespace Ngroxy.Modules.Entities
 
         [Column("friend_group_id")]
         [ForeignKey(nameof(FriendGroup))]
-        public int FriendGroupId { get; set; }
+        public int FriendGroupId { get; set; } = -1;
 
         public User Me { get; set; }
 
         public User You { get; set; }
 
+        [CanBeNull]
         public FriendGroup FriendGroup { get; set; }
     }
 }

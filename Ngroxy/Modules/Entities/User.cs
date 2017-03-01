@@ -22,6 +22,9 @@ namespace Ngroxy.Modules.Entities
         [Column("name")]
         public int Name { get; set; }
 
+        [Column("password")]
+        public string Password { get; set; }
+
         public ICollection<LocalAreaNetwork> LocalAreaNetworks { get; set; }
         public ICollection<FriendGroup> FriendGroups { get; set; }
     }
