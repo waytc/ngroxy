@@ -1,0 +1,80 @@
+﻿#region summary
+//   ------------------------------------------------------------------------------------------------
+//   <copyright file="Socks5Handler.cs">
+//     用户：朱宏飞
+//     日期：2017/02/05
+//     时间：13:21
+//   </copyright>
+//   ------------------------------------------------------------------------------------------------
+#endregion
+
+using System;
+using System.Linq;
+using System.Net;
+using System.Text;
+using DotNetty.Buffers;
+using DotNetty.Common.Utilities;
+using DotNetty.Transport.Channels;
+
+namespace Ngroxy.Handlers.Socks.V4
+{
+    public class Socks4ServerHandler : ChannelHandlerAdapter
+    {
+        private static readonly IPAddress IPZero = IPAddress.Parse("0.0.0.1");
+
+        /// <inheritdoc />
+        public override void ChannelRead(IChannelHandlerContext context, object message)
+        {
+            var buffer = message as IByteBuffer;
+            if (buffer?.ReadByte() != SocksProtocolVersion.Socks4A) return;
+            var command = Socks4CommandType.ValueOf(buffer.ReadByte());
+            if (command == null) return;
+            if (command == Socks4CommandType.Connect)
+            {
+                var port = buffer.ReadShort();
+                var ipBytes = new byte[4];
+                buffer.ReadBytes(ipBytes);
+                var ip = new IPAddress(ipBytes);
+                if (!IPZero.Equals(ip))
+                {
+
+                }
+                var verifyLength = buffer.ForEachByte(ByteProcessor.FIND_NUL);
+                if (buffer.ReaderIndex < verifyLength)
+                {
+                    buffer.ToString(buffer.ReaderIndex, verifyLength, Encoding.UTF8);
+                }
+                buffer.SkipBytes(1);
+                var domainLength = buffer.ForEachByte(ByteProcessor.FIND_NUL) - buffer.ReaderIndex;
+                var domain = buffer.ToString(buffer.ReaderIndex, domainLength, Encoding.UTF8);
+                buffer.SkipBytes(domainLength + 1);
+                var bb= Dns.GetHostAddresses(domain).FirstOrDefault();
+                if (bb == null)
+                {
+                    context.Channel.CloseAsync();
+                    return;
+                }
+
+                Console.WriteLine("v4域名：{0}", domain);
+                context.Channel.Pipeline.Replace(this, nameof(TcpTransfer),
+                    new TcpTransfer(context.Channel, new IPEndPoint(bb, port)));
+
+                var response = context.Allocator.Buffer();
+                response.WriteByte(0x00);
+                response.WriteByte(Socks4CommandStatus.Success.Value);
+                response.WriteShort(port);
+                response.WriteBytes(bb.GetAddressBytes());
+                context.Channel.WriteAndFlushAsync(response);
+//                base.ChannelRead(context, message);
+            }
+            else if (command == Socks4CommandType.Bind)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+    }
+}
