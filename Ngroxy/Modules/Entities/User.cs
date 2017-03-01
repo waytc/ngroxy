@@ -3,30 +3,26 @@
 //   <copyright file="User.cs">
 //     用户：朱宏飞
 //     日期：2017/03/01
-//     时间：13:15
+//     时间：18:41
 //   </copyright>
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Ngroxy
+namespace Ngroxy.Modules.Entities
 {
+    [Table("user")]
     public class User
     {
+        [Column("id")]
         public int ID { get; set; }
 
-        [NotNull]
-        public string Name { get;}
+        [Column("name")]
+        public int Name { get; set; }
 
-        public ICollection<UserGroup> UserGroups { get; set; }
-
-        public User(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name is null or white space.");
-            Name = name;
-        }
+        public ICollection<LocalAreaNetwork> LocalAreaNetworks { get; set; }
+        public ICollection<FriendGroup> FriendGroups { get; set; }
     }
 }

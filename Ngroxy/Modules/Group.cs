@@ -1,6 +1,6 @@
 ﻿#region summary
 //   ------------------------------------------------------------------------------------------------
-//   <copyright file="UserGroup.cs">
+//   <copyright file="Group.cs">
 //     用户：朱宏飞
 //     日期：2017/03/01
 //     时间：13:15
@@ -12,10 +12,10 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Ngroxy
+namespace Ngroxy.Modules
 {
 
-    public class UserGroup
+    public class Group
     {
         public int ID { get; set; }
 
@@ -32,7 +32,7 @@ namespace Ngroxy
             return $"{user.Name}.{Name}";
         }
 
-        public UserGroup(string name)
+        public Group(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name is null or white space.");
             Name = name;
