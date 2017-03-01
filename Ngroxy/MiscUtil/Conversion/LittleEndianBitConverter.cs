@@ -1,4 +1,5 @@
 
+// ReSharper disable CheckNamespace
 namespace MiscUtil.Conversion
 {
     /// <summary>
