@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -12,14 +13,22 @@ using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 using Ngroxy.Handlers;
 using Ngroxy.Handlers.Socks;
+using Ngroxy.Modules;
 
 namespace Ngroxy
 {
-    class Program
+    internal class Program
     {
+        static Program()
+        {
+            var dbFile = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "/Data");
+            AppDomain.CurrentDomain.SetData("DataDirectory", dbFile.FullName);
+        }
+
         private static readonly MultithreadEventLoopGroup BossGroup = new MultithreadEventLoopGroup();
         private static readonly MultithreadEventLoopGroup WorkerGroup = new MultithreadEventLoopGroup();
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             var bootstrap = new ServerBootstrap();
             bootstrap.Group(BossGroup, WorkerGroup);

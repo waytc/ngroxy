@@ -15,6 +15,7 @@ using System.Text;
 using DotNetty.Buffers;
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
+using Ngroxy.Modules;
 
 namespace Ngroxy.Handlers.Socks.V4
 {
@@ -48,24 +49,36 @@ namespace Ngroxy.Handlers.Socks.V4
                 var domainLength = buffer.ForEachByte(ByteProcessor.FIND_NUL) - buffer.ReaderIndex;
                 var domain = buffer.ToString(buffer.ReaderIndex, domainLength, Encoding.UTF8);
                 buffer.SkipBytes(domainLength + 1);
-                var bb= Dns.GetHostAddresses(domain).FirstOrDefault();
+                var bb = DomainNameSystem.Default.Query(domain).FirstOrDefault();
                 if (bb == null)
                 {
                     context.Channel.CloseAsync();
                     return;
                 }
 
+                var useSelfPort = false;
+                if (bb.Port == ushort.MaxValue)
+                {
+                    bb.Port = port;
+                    useSelfPort = true;
+                }
                 Console.WriteLine("v4域名：{0}", domain);
                 context.Channel.Pipeline.Replace(this, nameof(TcpTransfer),
-                    new TcpTransfer(context.Channel, new IPEndPoint(bb, port)));
-
+                    new TcpTransfer(context.Channel, bb));
                 var response = context.Allocator.Buffer();
                 response.WriteByte(0x00);
                 response.WriteByte(Socks4CommandStatus.Success.Value);
-                response.WriteShort(port);
-                response.WriteBytes(bb.GetAddressBytes());
+                if (useSelfPort)
+                {
+                    response.WriteUnsignedShort(0);
+                    response.WriteBytes(IPAddress.Any.GetAddressBytes());
+                }
+                else
+                {
+                    response.WriteUnsignedShort((ushort) bb.Port);
+                    response.WriteBytes(bb.Address.GetAddressBytes());
+                }
                 context.Channel.WriteAndFlushAsync(response);
-//                base.ChannelRead(context, message);
             }
             else if (command == Socks4CommandType.Bind)
             {

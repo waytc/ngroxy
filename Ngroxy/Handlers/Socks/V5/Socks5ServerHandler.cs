@@ -16,6 +16,7 @@ using System.Text;
 using DotNetty.Buffers;
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
+using Ngroxy.Modules;
 
 namespace Ngroxy.Handlers.Socks.V5
 {
@@ -79,25 +80,37 @@ namespace Ngroxy.Handlers.Socks.V5
                         buffer.SkipBytes(length);
                         var port = buffer.ReadUnsignedShort();
 
-                        var bb = Dns.GetHostAddresses(domain).FirstOrDefault();
+                        var bb = DomainNameSystem.Default.Query(domain).FirstOrDefault();
+
                         if (bb == null)
                         {
                             context.Channel.CloseAsync();
                             return;
                         }
-
+                        var useSelfPort = false;
+                        if (bb.Port == ushort.MaxValue)
+                        {
+                            useSelfPort = true;
+                            bb.Port = port;
+                        }
                         Console.WriteLine("v5域名：{0}", domain);
                         context.Channel.Pipeline.Replace(this, nameof(TcpTransfer),
-                            new TcpTransfer(context.Channel, new IPEndPoint(bb, port)));
-
+                            new TcpTransfer(context.Channel, bb));
                         var response = context.Allocator.Buffer();
                         response.WriteByte(SocksProtocolVersion.Socks5);
                         response.WriteByte(Socks5CommandStatus.Success.Value);
                         response.WriteByte(0x00);
-                        response.WriteByte(Socks5AddressType.ValueOf(bb).Value);
-                        response.WriteBytes(bb.GetAddressBytes());
-                        response.WriteUnsignedShort(port);
-                        var c = response.ToArray();
+                        response.WriteByte(Socks5AddressType.ValueOf(bb.Address).Value);
+                        if (useSelfPort)
+                        {
+                            response.WriteBytes(IPAddress.Any.GetAddressBytes());
+                            response.WriteUnsignedShort(0);
+                        }
+                        else
+                        {
+                            response.WriteBytes(bb.Address.GetAddressBytes());
+                            response.WriteUnsignedShort((ushort)bb.Port);
+                        }
                         context.WriteAndFlushAsync(response);
                     }
                 }

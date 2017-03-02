@@ -17,11 +17,14 @@ namespace Ngroxy.Modules
 {
     public class DataContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<FriendGroup> FriendGroups { get; set; }
-        public DbSet<Friend> Friends { get; set; }
-        public DbSet<LocalAreaNetwork> LocalAreaNetworks { get; set; }
-        public DbSet<LocalAreaNetworkUser> LocalAreaNetworkUsers { get; set; }
+        public DbSet<Entities.User> Users { get; set; }
+        public DbSet<Entities.FriendGroup> FriendGroups { get; set; }
+        public DbSet<Entities.Friend> Friends { get; set; }
+        public DbSet<Entities.LocalAreaNetwork> LocalAreaNetworks { get; set; }
+        public DbSet<Entities.LocalAreaNetworkUser> LocalAreaNetworkUsers { get; set; }
+        public DbSet<Entities.DomainNameSystem> DomainNameSystems { get; set; }
+
+        public DataContext() : base("meta") { }
 
         /// <inheritdoc />
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
