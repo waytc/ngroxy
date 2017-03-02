@@ -1,10 +1,10 @@
 ﻿#region summary
 
 //   ------------------------------------------------------------------------------------------------
-//   <copyright file="SocksServerHandler.cs">
+//   <copyright file="NgroxyServerHandler.cs">
 //     用户：朱宏飞
-//     日期：2017/02/05
-//     时间：2:47
+//     日期：2017/03/02
+//     时间：20:25
 //   </copyright>
 //   ------------------------------------------------------------------------------------------------
 
@@ -12,18 +12,15 @@
 
 using System;
 using DotNetty.Buffers;
-using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
-using Microsoft.Extensions.Logging;
+using Ngroxy.Handlers.Socks;
 using Ngroxy.Handlers.Socks.V4;
 using Ngroxy.Handlers.Socks.V5;
 
-namespace Ngroxy.Handlers.Socks
+namespace Ngroxy.Handlers
 {
-    public class SocksServerHandler : ChannelHandlerAdapter
+    public class NgroxyServerHandler : ChannelHandlerAdapter
     {
-        private static ILogger _logger = InternalLoggerFactory.DefaultFactory.CreateLogger<SocksServerHandler>();
-        
         /// <inheritdoc />
         public override void ChannelRead(IChannelHandlerContext context, object message)
         {
@@ -39,10 +36,20 @@ namespace Ngroxy.Handlers.Socks
                     context.Channel.Pipeline.Replace(this, nameof(Socks5ServerHandler), new Socks5ServerHandler());
                     break;
                 default:
-                    _logger.LogError("未知socks版本协议.");
+
+                    // 判断是否是ngroxy协议
+                    if (IsNgroxyProtocol(buffer))
+                    {
+                        context.Channel.Pipeline.Replace(this, nameof(NgroxyHandler), new NgroxyHandler());
+                    }
                     break;
             }
             context.FireChannelRead(message);
+        }
+
+        private static bool IsNgroxyProtocol(IByteBuffer buffer)
+        {
+            return false;
         }
     }
 }

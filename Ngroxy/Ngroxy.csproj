@@ -198,6 +198,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\NgroxyHandler.cs" />
+    <Compile Include="Handlers\NgroxyServerHandler.cs" />
     <Compile Include="Modules\AlgorithmType.cs" />
     <Compile Include="Modules\AuthParameter.cs" />
     <Compile Include="Modules\CommandType.cs" />
