@@ -12,6 +12,7 @@ namespace Ngroxy.Modules
     public class NgroxyEngine
     {
         public const byte Version = 0x01;
+        public User User { get; set; }
 
         public void PipeIn(NgroxyContext context, Packet packet)
         {

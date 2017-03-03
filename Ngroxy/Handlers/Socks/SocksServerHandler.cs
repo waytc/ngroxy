@@ -22,7 +22,7 @@ namespace Ngroxy.Handlers.Socks
 {
     public class SocksServerHandler : ChannelHandlerAdapter
     {
-        private static ILogger _logger = InternalLoggerFactory.DefaultFactory.CreateLogger<SocksServerHandler>();
+        private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.CreateLogger<SocksServerHandler>();
         
         /// <inheritdoc />
         public override void ChannelRead(IChannelHandlerContext context, object message)
@@ -39,7 +39,7 @@ namespace Ngroxy.Handlers.Socks
                     context.Channel.Pipeline.Replace(this, nameof(Socks5ServerHandler), new Socks5ServerHandler());
                     break;
                 default:
-                    _logger.LogError("未知socks版本协议.");
+                    Logger.LogError("未知socks版本协议.");
                     break;
             }
             context.FireChannelRead(message);

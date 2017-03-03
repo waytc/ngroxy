@@ -198,10 +198,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Codes\NgroxyMessageDecoder.cs" />
+    <Compile Include="Codes\NgroxyMessageEncoder.cs" />
     <Compile Include="Handlers\NgroxyHandler.cs" />
     <Compile Include="Handlers\NgroxyServerHandler.cs" />
     <Compile Include="Modules\AlgorithmType.cs" />
     <Compile Include="Modules\AuthParameter.cs" />
+    <Compile Include="Modules\CommandStatus.cs" />
     <Compile Include="Modules\CommandType.cs" />
     <Compile Include="Modules\DataContext.cs" />
     <Compile Include="Modules\DataContextPool.cs" />
@@ -216,6 +219,9 @@
     <Compile Include="Modules\IPipe.cs" />
     <Compile Include="Modules\NgroxyContext.cs" />
     <Compile Include="Modules\NgroxyEngine.cs" />
+    <Compile Include="Modules\NgroxyMessage.cs" />
+    <Compile Include="Modules\NgroxyRequest.cs" />
+    <Compile Include="Modules\NgroxyResponse.cs" />
     <Compile Include="Modules\Packet.cs" />
     <Compile Include="Modules\User.cs" />
     <Compile Include="Handlers\Socks\ByteStatus.cs" />
