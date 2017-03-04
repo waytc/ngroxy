@@ -1,15 +1,21 @@
 ﻿#region summary
 //   ------------------------------------------------------------------------------------------------
-//   <copyright file="NgroxyMessage.cs">
+//   <copyright file="NetworkResource.cs">
 //     用户：朱宏飞
-//     日期：2017/03/03
-//     时间：19:03
+//     日期：2017/03/04
+//     时间：10:27
 //   </copyright>
 //   ------------------------------------------------------------------------------------------------
 #endregion
+
+using System.Net;
+
 namespace Ngroxy.Modules
 {
-    public abstract class NgroxyMessage
+    public class NetworkResource
     {
+        public User User { get; set; }
+        public string Domain { get; set; }
+        public IPEndPoint IPEndPoint { get; set; }
     }
 }

@@ -7,10 +7,20 @@
 //   </copyright>
 //   ------------------------------------------------------------------------------------------------
 #endregion
+
+using System.Collections.Generic;
+using DotNetty.Codecs;
+using DotNetty.Transport.Channels;
+using Ngroxy.Modules;
+
 namespace Ngroxy.Codes
 {
-    public class NgroxyMessageDecoder
+    public class NgroxyMessageDecoder : MessageToMessageDecoder<NgroxyMessage>
     {
-        
+        /// <inheritdoc />
+        protected override void Decode(IChannelHandlerContext context, NgroxyMessage message, List<object> output)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

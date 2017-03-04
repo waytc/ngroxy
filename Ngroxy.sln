@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NgroxyTest", "NgroxyTest\Ng
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "NgroxyDesign", "NgroxyDesign\NgroxyDesign.modelproj", "{19013AB2-3D96-48DC-9FC7-D952706894C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ngroxy.Core", "Ngroxy.Core\Ngroxy.Core.csproj", "{CCD850A5-7FF8-4D1F-8A3F-D6FC78A2D124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{19013AB2-3D96-48DC-9FC7-D952706894C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19013AB2-3D96-48DC-9FC7-D952706894C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19013AB2-3D96-48DC-9FC7-D952706894C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD850A5-7FF8-4D1F-8A3F-D6FC78A2D124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD850A5-7FF8-4D1F-8A3F-D6FC78A2D124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD850A5-7FF8-4D1F-8A3F-D6FC78A2D124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD850A5-7FF8-4D1F-8A3F-D6FC78A2D124}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

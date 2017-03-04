@@ -16,6 +16,7 @@ using DotNetty.Buffers;
 using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
 using Microsoft.Extensions.Logging;
+using Ngroxy.Codes;
 using Ngroxy.Handlers.Socks;
 using Ngroxy.Handlers.Socks.V4;
 using Ngroxy.Handlers.Socks.V5;
@@ -27,7 +28,7 @@ namespace Ngroxy.Handlers
 
         private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.CreateLogger<SocksServerHandler>();
 
-        private static readonly byte[] Ngroxy = {0x2};
+        private static readonly byte[] Ngroxy = {0x4E, 0x67, 0x72, 0x6F, 0x78, 0x79};
 
         private IByteBuffer _cumulation;
         /// <inheritdoc />
@@ -58,6 +59,8 @@ namespace Ngroxy.Handlers
                     if (IsNgroxyProtocol(buffer))
                     {
                         buffer.SkipBytes(Ngroxy.Length);
+                        context.Channel.Pipeline.AddFirst(new NgroxyMessageDecoder());
+                        context.Channel.Pipeline.AddFirst(new NgroxyMessageEncoder());
                         context.Channel.Pipeline.Replace(this, nameof(NgroxyHandler), new NgroxyHandler());
                     }
                     else

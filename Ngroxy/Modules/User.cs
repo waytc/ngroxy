@@ -28,5 +28,7 @@ namespace Ngroxy.Modules
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name is null or white space.");
             Name = name;
         }
+
+        public ICollection<NetworkResource> NetworkResources { get; set; }
     }
 }

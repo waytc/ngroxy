@@ -14,12 +14,15 @@ namespace Ngroxy.Modules
 {
     public enum CommandType : byte
     {
-        RegisterUser,
-        RegisterDataChannel,
-        ConnectDataChannel,
-        NetworkResource,
-        Login,
-        Logout,
-        CreateGroup,
+        RegisterUser = 1, // 注册用户
+        RegisterDataChannel = 2, // 注册数据连接
+        ConnectDataChannel = 3, // 连接数据连接
+        InitNetworkResourcePool = 4, // 初始化池
+        JoinNetworkResourcePool = 5, // 加入池
+        NetworkResource = 6,
+        Login = 7, // 登录
+        Logout = 8, // 登出
+        AddFriend,
+        DropFriend
     }
 }
