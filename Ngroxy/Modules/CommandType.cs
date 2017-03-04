@@ -14,8 +14,12 @@ namespace Ngroxy.Modules
 {
     public enum CommandType : byte
     {
-        CreateUser,
+        RegisterUser,
+        RegisterDataChannel,
+        ConnectDataChannel,
+        NetworkResource,
+        Login,
+        Logout,
         CreateGroup,
-        DeleteUser,
     }
 }

@@ -13,7 +13,8 @@ namespace Ngroxy.Modules
     {
         public int Version { get; set; }
         public User User { get; set; }
-
+        public NgroxyRequest Request { get; set; }
+        public NgroxyResponse Response { get; set; }
         public Group Group { get; set; }
         
         public IPipe InPipe { get; set; }
