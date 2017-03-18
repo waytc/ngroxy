@@ -29,8 +29,8 @@ namespace Ngroxy.Handlers.Socks
         {
             var buffer = message as IByteBuffer;
             if (buffer == null) return;
-
-            switch (buffer.GetByte(buffer.ReaderIndex))
+            var b = buffer.GetByte(buffer.ReaderIndex);
+            switch (b)
             {
                 case SocksProtocolVersion.Socks4A:
                     context.Channel.Pipeline.Replace(this, nameof(Socks4ServerHandler), new Socks4ServerHandler());
