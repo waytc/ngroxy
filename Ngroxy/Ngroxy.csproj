@@ -215,58 +215,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Codes\NgroxyMessageDecoder.cs" />
-    <Compile Include="Codes\NgroxyMessageEncoder.cs" />
-    <Compile Include="Handlers\NgroxyHandler.cs" />
-    <Compile Include="Handlers\NgroxyServerHandler.cs" />
-    <Compile Include="Modules\AlgorithmType.cs" />
-    <Compile Include="Modules\AuthParameter.cs" />
-    <Compile Include="Modules\CommandStatus.cs" />
-    <Compile Include="Modules\CommandType.cs" />
-    <Compile Include="Modules\DataContext.cs" />
-    <Compile Include="Modules\DataContextPool.cs" />
-    <Compile Include="Modules\DomainNameSystem.cs" />
-    <Compile Include="Modules\Entities\DomainNameSystem.cs" />
-    <Compile Include="Modules\Entities\Friend.cs" />
-    <Compile Include="Modules\Entities\LocalAreaNetwork.cs" />
-    <Compile Include="Modules\Entities\LocalAreaNetworkUser.cs" />
-    <Compile Include="Modules\Entities\FriendGroup.cs" />
-    <Compile Include="Modules\Entities\User.cs" />
-    <Compile Include="Modules\Extensions\PacketExtensions.cs" />
-    <Compile Include="Modules\IPipe.cs" />
-    <Compile Include="Modules\NetworkResource.cs" />
-    <Compile Include="Modules\NetworkResourcePool.cs" />
-    <Compile Include="Modules\NgroxyContext.cs" />
-    <Compile Include="Modules\NgroxyEngine.cs" />
-    <Compile Include="Modules\NgroxyMessage.cs" />
-    <Compile Include="Modules\NgroxyRequest.cs" />
-    <Compile Include="Modules\NgroxyResponse.cs" />
-    <Compile Include="Modules\Packet.cs" />
-    <Compile Include="Modules\User.cs" />
-    <Compile Include="Handlers\Socks\ByteStatus.cs" />
-    <Compile Include="Handlers\Socks\SocksServerHandler.cs" />
-    <Compile Include="Handlers\Socks\SocksProtocolVersion.cs" />
-    <Compile Include="Handlers\Socks\V4\Socket4Message.cs" />
-    <Compile Include="Handlers\Socks\V4\Socket4MessageDecoder.cs" />
-    <Compile Include="Handlers\Socks\V4\Socks4CommandStatus.cs" />
-    <Compile Include="Handlers\Socks\V4\Socks4CommandType.cs" />
-    <Compile Include="Handlers\Socks\V4\Socks4ServerHandler.cs" />
-    <Compile Include="Handlers\Socks\V4\State.cs" />
-    <Compile Include="Handlers\Socks\V5\Socks5AddressType.cs" />
-    <Compile Include="Handlers\Socks\V5\Socks5AuthMethod.cs" />
-    <Compile Include="Handlers\Socks\V5\Socks5CommandStatus.cs" />
-    <Compile Include="Handlers\Socks\V5\Socks5CommandType.cs" />
-    <Compile Include="Handlers\Socks\V5\Socks5ServerHandler.cs" />
-    <Compile Include="Handlers\TcpTransfer.cs" />
-    <Compile Include="MiscUtil\Conversion\BigEndianBitConverter.cs" />
-    <Compile Include="MiscUtil\Conversion\EndianBitConverter.cs" />
-    <Compile Include="MiscUtil\Conversion\Endianness.cs" />
-    <Compile Include="MiscUtil\Conversion\LittleEndianBitConverter.cs" />
-    <Compile Include="Pools\IObjectPool.cs" />
-    <Compile Include="Pools\ObjectPool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Modules\Group.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -274,8 +224,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\NgroxyModel.ndm" />
-    <None Include="MiscUtil\Conversion\README.md" />
-    <None Include="MiscUtil\README.md" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

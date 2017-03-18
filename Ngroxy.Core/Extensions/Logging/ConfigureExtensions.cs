@@ -5,6 +5,7 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 using NLog.Config;
 
+// ReSharper disable once CheckNamespace
 namespace NLog.Extensions.Logging
 {
     /// <summary>

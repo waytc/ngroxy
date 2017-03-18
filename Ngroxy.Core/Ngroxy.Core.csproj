@@ -54,9 +54,18 @@
       <HintPath>..\packages\DotNetty.Transport.0.4.2\lib\net451\DotNetty.Transport.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.2.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.2.0\lib\net45\Google.Protobuf.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
@@ -73,6 +82,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Numerics" />
@@ -89,14 +99,66 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Codes\NgroxyMessageDecoder.cs" />
+    <Compile Include="Codes\NgroxyMessageEncoder.cs" />
     <Compile Include="Extensions\Logging\ConfigureExtensions.cs" />
     <Compile Include="Extensions\Logging\NLogLogger.cs" />
     <Compile Include="Extensions\Logging\NLogLoggerProvider.cs" />
     <Compile Include="Extensions\Logging\NLogProviderOptions.cs" />
+    <Compile Include="Handlers\NgroxyHandler.cs" />
+    <Compile Include="Handlers\NgroxyServerHandler.cs" />
+    <Compile Include="Handlers\Socks\ByteStatus.cs" />
+    <Compile Include="Handlers\Socks\SocksProtocolVersion.cs" />
+    <Compile Include="Handlers\Socks\SocksServerHandler.cs" />
+    <Compile Include="Handlers\Socks\V4\Socket4Message.cs" />
+    <Compile Include="Handlers\Socks\V4\Socket4MessageDecoder.cs" />
+    <Compile Include="Handlers\Socks\V4\Socks4CommandStatus.cs" />
+    <Compile Include="Handlers\Socks\V4\Socks4CommandType.cs" />
+    <Compile Include="Handlers\Socks\V4\Socks4ServerHandler.cs" />
+    <Compile Include="Handlers\Socks\V4\State.cs" />
+    <Compile Include="Handlers\Socks\V5\Socks5AddressType.cs" />
+    <Compile Include="Handlers\Socks\V5\Socks5AuthMethod.cs" />
+    <Compile Include="Handlers\Socks\V5\Socks5CommandStatus.cs" />
+    <Compile Include="Handlers\Socks\V5\Socks5CommandType.cs" />
+    <Compile Include="Handlers\Socks\V5\Socks5ServerHandler.cs" />
+    <Compile Include="Handlers\TcpTransfer.cs" />
+    <Compile Include="MiscUtil\Conversion\BigEndianBitConverter.cs" />
+    <Compile Include="MiscUtil\Conversion\EndianBitConverter.cs" />
+    <Compile Include="MiscUtil\Conversion\Endianness.cs" />
+    <Compile Include="MiscUtil\Conversion\LittleEndianBitConverter.cs" />
+    <Compile Include="Modules\AlgorithmType.cs" />
+    <Compile Include="Modules\AuthParameter.cs" />
+    <Compile Include="Modules\CommandStatus.cs" />
+    <Compile Include="Modules\CommandType.cs" />
+    <Compile Include="Modules\DataContext.cs" />
+    <Compile Include="Modules\DataContextPool.cs" />
+    <Compile Include="Modules\DomainNameSystem.cs" />
+    <Compile Include="Modules\Entities\DomainNameSystem.cs" />
+    <Compile Include="Modules\Entities\Friend.cs" />
+    <Compile Include="Modules\Entities\FriendGroup.cs" />
+    <Compile Include="Modules\Entities\LocalAreaNetwork.cs" />
+    <Compile Include="Modules\Entities\LocalAreaNetworkUser.cs" />
+    <Compile Include="Modules\Entities\User.cs" />
+    <Compile Include="Modules\Extensions\PacketExtensions.cs" />
+    <Compile Include="Modules\Group.cs" />
+    <Compile Include="Modules\IPipe.cs" />
+    <Compile Include="Modules\NetworkResource.cs" />
+    <Compile Include="Modules\NetworkResourcePool.cs" />
+    <Compile Include="Modules\NgroxyContext.cs" />
+    <Compile Include="Modules\NgroxyEngine.cs" />
+    <Compile Include="Modules\NgroxyMessage.cs" />
+    <Compile Include="Modules\NgroxyRequest.cs" />
+    <Compile Include="Modules\NgroxyResponse.cs" />
+    <Compile Include="Modules\Packet.cs" />
+    <Compile Include="Modules\User.cs" />
+    <Compile Include="Pools\IObjectPool.cs" />
+    <Compile Include="Pools\ObjectPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="MiscUtil\Conversion\README.md" />
+    <None Include="MiscUtil\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
