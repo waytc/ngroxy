@@ -21,8 +21,10 @@ namespace Ngroxy.Handlers
         {
             var buffer = message as IByteBuffer;
             if (buffer == null) return;
-            var ngroxyContext = new NgroxyContext();
-            ngroxyContext.Version = buffer.ReadByte();
+            var ngroxyContext = new NgroxyContext
+            {
+                Version = buffer.ReadByte()
+            };
 
             base.ChannelRead(context, message);
         }

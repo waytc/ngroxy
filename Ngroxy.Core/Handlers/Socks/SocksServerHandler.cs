@@ -10,14 +10,12 @@
 
 #endregion
 
-using System;
 using DotNetty.Buffers;
 using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
 using Microsoft.Extensions.Logging;
 using Ngroxy.Handlers.Socks.V4;
 using Ngroxy.Handlers.Socks.V5;
-using NLog;
 using NLog.Extensions.Logging;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
