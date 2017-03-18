@@ -17,13 +17,13 @@ using DotNetty.Transport.Channels;
 using Microsoft.Extensions.Logging;
 using Ngroxy.Handlers.Socks.V4;
 using Ngroxy.Handlers.Socks.V5;
+using NLog;
 
 namespace Ngroxy.Handlers.Socks
 {
     public class SocksServerHandler : ChannelHandlerAdapter
     {
-        private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.CreateLogger<SocksServerHandler>();
-        
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         /// <inheritdoc />
         public override void ChannelRead(IChannelHandlerContext context, object message)
         {
@@ -39,7 +39,7 @@ namespace Ngroxy.Handlers.Socks
                     context.Channel.Pipeline.Replace(this, nameof(Socks5ServerHandler), new Socks5ServerHandler());
                     break;
                 default:
-                    Logger.LogError("未知socks版本协议.");
+                    Logger.Error("未知socks版本协议.");
                     break;
             }
             context.FireChannelRead(message);

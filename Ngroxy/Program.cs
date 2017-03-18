@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+using DotNetty.Common.Internal.Logging;
 using DotNetty.Handlers.Logging;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
-using Ngroxy.Handlers;
+using Microsoft.Extensions.Logging;
 using Ngroxy.Handlers.Socks;
-using Ngroxy.Modules;
+using NLog;
 
 namespace Ngroxy
 {
     internal class Program
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         static Program()
         {
             var dbFile = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "/Data");
@@ -40,7 +39,9 @@ namespace Ngroxy
             {
                 channel.Pipeline.AddLast(new SocksServerHandler());
             }));
-            bootstrap.BindAsync(new IPEndPoint(IPAddress.Any, 1026)).Wait();
+            var port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
+            bootstrap.BindAsync(new IPEndPoint(IPAddress.Any, port)).Wait();
+            Logger.Info($"Server has started in port {port}");
             Console.ReadKey();
       }
     }
