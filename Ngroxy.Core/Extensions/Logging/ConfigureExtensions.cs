@@ -1,13 +1,15 @@
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
-using NLog.Config;
+
 
 // ReSharper disable once CheckNamespace
 namespace NLog.Extensions.Logging
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Reflection;
+    using Microsoft.Extensions.Logging;
+    using NLog.Config;
+
     /// <summary>
     /// Helpers for .NET Core
     /// </summary>

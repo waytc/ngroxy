@@ -10,11 +10,13 @@
 
 #endregion
 
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
+
 
 namespace Ngroxy.Modules.Entities
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Diagnostics;
+
     [Table("domain_name_system"),DebuggerDisplay("{Domain},{IP}")]
     public class DomainNameSystem
     {

@@ -8,11 +8,13 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Ngroxy.Modules.Entities
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     [Table("user")]
     public class User
     {

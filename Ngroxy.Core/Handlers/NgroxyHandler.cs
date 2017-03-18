@@ -8,12 +8,13 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using DotNetty.Buffers;
-using DotNetty.Transport.Channels;
-using Ngroxy.Modules;
 
 namespace Ngroxy.Handlers
 {
+    using DotNetty.Buffers;
+    using DotNetty.Transport.Channels;
+    using Ngroxy.Modules;
+
     public class NgroxyHandler : ChannelHandlerAdapter
     {
         /// <inheritdoc />
@@ -21,11 +22,7 @@ namespace Ngroxy.Handlers
         {
             var buffer = message as IByteBuffer;
             if (buffer == null) return;
-            var ngroxyContext = new NgroxyContext
-            {
-                Version = buffer.ReadByte()
-            };
-
+            
             base.ChannelRead(context, message);
         }
     }

@@ -10,11 +10,13 @@
 
 #endregion
 
-using System.ComponentModel.DataAnnotations.Schema;
-using JetBrains.Annotations;
+
 
 namespace Ngroxy.Modules.Entities
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+    using JetBrains.Annotations;
+
     [Table("friend")]
     public class Friend
     {

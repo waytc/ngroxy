@@ -8,10 +8,11 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Net;
 
 namespace Ngroxy.Modules
 {
+    using System.Net;
+
     public class NetworkResource
     {
         public User User { get; set; }

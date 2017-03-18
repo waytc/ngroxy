@@ -8,12 +8,13 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ngroxy.Modules.Entities
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     [Table("friend_group")]
     public class FriendGroup
     {

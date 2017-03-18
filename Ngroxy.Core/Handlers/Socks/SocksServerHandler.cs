@@ -10,17 +10,17 @@
 
 #endregion
 
-using DotNetty.Buffers;
-using DotNetty.Common.Internal.Logging;
-using DotNetty.Transport.Channels;
-using Microsoft.Extensions.Logging;
-using Ngroxy.Handlers.Socks.V4;
-using Ngroxy.Handlers.Socks.V5;
-using NLog.Extensions.Logging;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Ngroxy.Handlers.Socks
 {
+    using DotNetty.Buffers;
+    using DotNetty.Common.Internal.Logging;
+    using DotNetty.Transport.Channels;
+    using Microsoft.Extensions.Logging;
+    using Ngroxy.Handlers.Socks.V4;
+    using Ngroxy.Handlers.Socks.V5;
+    using NLog.Extensions.Logging;
+
     public class SocksServerHandler : ChannelHandlerAdapter
     {
         private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.GetCurrentClassLogger();

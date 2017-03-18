@@ -8,8 +8,7 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using DotNetty.Common.Utilities;
+
 
 namespace Ngroxy.Handlers.Socks.V4
 {

@@ -10,10 +10,11 @@
 
 #endregion
 
-using Ngroxy.Pools;
 
 namespace Ngroxy.Modules
 {
+    using Ngroxy.Pools;
+
     public class DataContextPool : ObjectPool<DataContext>
     {
         public static readonly DataContextPool Default = new DataContextPool();

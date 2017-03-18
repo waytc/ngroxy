@@ -10,26 +10,27 @@
 
 #endregion
 
-using System;
-using System.Collections.Concurrent;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading.Tasks;
-using DotNetty.Buffers;
-using DotNetty.Common.Internal;
-using DotNetty.Common.Internal.Logging;
-using DotNetty.Transport.Bootstrapping;
-using DotNetty.Transport.Channels;
-using DotNetty.Transport.Channels.Sockets;
-
 namespace Ngroxy.Handlers
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Net;
+    using System.Threading.Tasks;
+    using DotNetty.Buffers;
+    using DotNetty.Common.Internal;
+    using DotNetty.Common.Internal.Logging;
+    using DotNetty.Transport.Bootstrapping;
+    using DotNetty.Transport.Channels;
+    using DotNetty.Transport.Channels.Sockets;
+    using Microsoft.Extensions.Logging;
+    using NLog.Extensions.Logging;
+
     /// <summary>
     /// Tcp数据代理转发
     /// </summary>
     public class TcpTransfer : ChannelHandlerAdapter
     {
-        private static readonly IInternalLogger Logger = InternalLoggerFactory.GetInstance<TcpTransfer>();
+        private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.GetCurrentClassLogger();
 
         private readonly EndPoint _endPoint;
         private readonly IChannel _parentChannel;
@@ -79,13 +80,12 @@ namespace Ngroxy.Handlers
         /// <inheritdoc />
         public override void ChannelActive(IChannelHandlerContext context)
         {
-            Logger.Info("代理活跃：{0}", context);
+            Logger.LogInformation("active：{0}", context.Name);
             if (!context.Channel.Equals(_childChannel)) return;
             if (_messageQueue.IsEmpty) return;
             while (!_messageQueue.IsEmpty)
             {
-                object message;
-                if (_messageQueue.TryDequeue(out message))
+                if (_messageQueue.TryDequeue(out object message))
                     context.WriteAsync(message);
             }
             context.Flush();

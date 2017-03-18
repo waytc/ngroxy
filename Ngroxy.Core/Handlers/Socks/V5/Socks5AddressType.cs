@@ -8,13 +8,15 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Net;
-using System.Net.Sockets;
+
 
 namespace Ngroxy.Handlers.Socks.V5
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Net;
+    using System.Net.Sockets;
+
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Socks5AddressType: ByteStatus
     {

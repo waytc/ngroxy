@@ -8,13 +8,15 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Collections.Generic;
-using DotNetty.Codecs;
-using DotNetty.Transport.Channels;
-using Ngroxy.Modules;
+
 
 namespace Ngroxy.Codes
 {
+    using System.Collections.Generic;
+    using DotNetty.Codecs;
+    using DotNetty.Transport.Channels;
+    using Ngroxy.Modules;
+
     public class NgroxyMessageDecoder : MessageToMessageDecoder<NgroxyMessage>
     {
         /// <inheritdoc />

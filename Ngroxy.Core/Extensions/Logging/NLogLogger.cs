@@ -1,9 +1,11 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
-
+﻿
 // ReSharper disable once CheckNamespace
 namespace NLog.Extensions.Logging
 {
+    using System;
+    using Microsoft.Extensions.Logging;
+    using LogLevel = NLog.LogLevel;
+
     /// <summary>
     /// Wrap NLog's Logger in a Microsoft.Extensions.Logging's interface <see cref="Microsoft.Extensions.Logging.ILogger"/>.
     /// </summary>

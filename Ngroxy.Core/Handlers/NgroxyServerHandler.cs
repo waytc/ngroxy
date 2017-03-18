@@ -10,19 +10,18 @@
 
 #endregion
 
-using System;
-using System.Linq;
-using DotNetty.Buffers;
-using DotNetty.Common.Internal.Logging;
-using DotNetty.Transport.Channels;
-using Microsoft.Extensions.Logging;
-using Ngroxy.Codes;
-using Ngroxy.Handlers.Socks;
-using Ngroxy.Handlers.Socks.V4;
-using Ngroxy.Handlers.Socks.V5;
-
 namespace Ngroxy.Handlers
 {
+    using System.Linq;
+    using DotNetty.Buffers;
+    using DotNetty.Common.Internal.Logging;
+    using DotNetty.Transport.Channels;
+    using Microsoft.Extensions.Logging;
+    using Ngroxy.Codes;
+    using Ngroxy.Handlers.Socks;
+    using Ngroxy.Handlers.Socks.V4;
+    using Ngroxy.Handlers.Socks.V5;
+
     public class NgroxyServerHandler : ChannelHandlerAdapter
     {
 

@@ -8,10 +8,10 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Collections.Generic;
-
 namespace Ngroxy.Modules
 {
+    using System.Collections.Generic;
+
     public class NgroxyEngine
     {
         public const byte Version = 0x01;

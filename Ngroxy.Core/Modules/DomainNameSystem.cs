@@ -8,13 +8,13 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+
 
 namespace Ngroxy.Modules
 {
+    using System.Linq;
+    using System.Net;
+
     public class DomainNameSystem
     {
         public static readonly DomainNameSystem Default = new DomainNameSystem();

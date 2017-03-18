@@ -10,12 +10,14 @@
 
 #endregion
 
-using System;
-using System.Collections.Concurrent;
-using System.Threading;
+
 
 namespace Ngroxy.Pools
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading;
+
     /// <summary>
     ///     对象池
     /// </summary>
@@ -28,8 +30,7 @@ namespace Ngroxy.Pools
 
         public ObjectPool(Func<T> createCallback, int minCount = 5, int maxCount = 20) : this(minCount, maxCount)
         {
-            if (createCallback == null) throw new ArgumentNullException(nameof(createCallback));
-            _createCallback = createCallback;
+            _createCallback = createCallback ?? throw new ArgumentNullException(nameof(createCallback));
             Initialize();
         }
 
@@ -84,8 +85,7 @@ namespace Ngroxy.Pools
         /// <inheritdoc />
         public virtual T Borrow()
         {
-            T obj;
-            if (_bag.TryTake(out obj)) return obj;
+            if (_bag.TryTake(out T obj)) return obj;
             ThreadPool.QueueUserWorkItem(state => { Initialize(); });
             return Create();
         }
@@ -110,8 +110,7 @@ namespace Ngroxy.Pools
         {
             while (!_bag.IsEmpty)
             {
-                T obj;
-                if (!_bag.TryTake(out obj)) continue;
+                if (!_bag.TryTake(out T obj)) continue;
                 var disposable = obj as IDisposable;
                 disposable?.Dispose();
             }

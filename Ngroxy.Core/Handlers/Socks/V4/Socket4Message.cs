@@ -8,10 +8,10 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Net;
-
 namespace Ngroxy.Handlers.Socks.V4
 {
+    using System.Net;
+
     public class Socket4Message
     {
         public SocksProtocolVersion Version { get; set; }

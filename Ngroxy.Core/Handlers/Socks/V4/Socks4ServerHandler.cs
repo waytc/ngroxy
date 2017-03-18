@@ -8,22 +8,21 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.Linq;
-using System.Net;
-using System.Text;
-using DotNetty.Buffers;
-using DotNetty.Common.Internal.Logging;
-using DotNetty.Common.Utilities;
-using DotNetty.Transport.Channels;
-using Microsoft.Extensions.Logging;
-using Ngroxy.Modules;
-using NLog;
-using NLog.Extensions.Logging;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
+
 
 namespace Ngroxy.Handlers.Socks.V4
 {
+    using System.Linq;
+    using System.Net;
+    using System.Text;
+    using DotNetty.Buffers;
+    using DotNetty.Common.Internal.Logging;
+    using DotNetty.Common.Utilities;
+    using DotNetty.Transport.Channels;
+    using Microsoft.Extensions.Logging;
+    using Ngroxy.Modules;
+    using NLog.Extensions.Logging;
+
     public class Socks4ServerHandler : ChannelHandlerAdapter
     {
         private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.GetCurrentClassLogger();

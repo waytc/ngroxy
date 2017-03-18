@@ -8,12 +8,13 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.Collections.Generic;
-using JetBrains.Annotations;
+
 
 namespace Ngroxy.Modules
 {
+    using System;
+    using System.Collections.Generic;
+    using JetBrains.Annotations;
 
     public class Group
     {

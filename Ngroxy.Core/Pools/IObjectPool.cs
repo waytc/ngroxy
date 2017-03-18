@@ -10,10 +10,11 @@
 
 #endregion
 
-using System;
 
 namespace Ngroxy.Pools
 {
+    using System;
+
     /// <summary>
     ///     对象池接口
     /// </summary>

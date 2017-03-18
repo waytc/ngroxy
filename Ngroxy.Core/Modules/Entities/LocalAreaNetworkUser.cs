@@ -10,11 +10,13 @@
 
 #endregion
 
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Ngroxy.Modules.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     [Table("local_area_network_user")]
     public class LocalAreaNetworkUser
     {

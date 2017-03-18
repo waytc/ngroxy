@@ -1,20 +1,21 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
-using DotNetty.Common.Internal.Logging;
-using DotNetty.Handlers.Logging;
-using DotNetty.Transport.Bootstrapping;
-using DotNetty.Transport.Channels;
-using DotNetty.Transport.Channels.Sockets;
-using Microsoft.Extensions.Logging;
-using Ngroxy.Handlers.Socks;
-using NLog.Extensions.Logging;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
+﻿
 
 namespace Ngroxy
 {
+    using System;
+    using System.Configuration;
+    using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
+    using DotNetty.Common.Internal.Logging;
+    using DotNetty.Handlers.Logging;
+    using DotNetty.Transport.Bootstrapping;
+    using DotNetty.Transport.Channels;
+    using DotNetty.Transport.Channels.Sockets;
+    using Microsoft.Extensions.Logging;
+    using Ngroxy.Handlers.Socks;
+    using NLog.Extensions.Logging;
+
     internal class Program
     {
         private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.CreateLogger<Program>();

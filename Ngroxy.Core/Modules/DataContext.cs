@@ -10,11 +10,11 @@
 
 #endregion
 
-using System.Data.Entity;
-using Ngroxy.Modules.Entities;
 
 namespace Ngroxy.Modules
 {
+    using System.Data.Entity;
+
     public class DataContext : DbContext
     {
         public DbSet<Entities.User> Users { get; set; }

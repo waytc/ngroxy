@@ -8,11 +8,12 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System;
-using System.Diagnostics;
 
 namespace Ngroxy.Handlers.Socks
 {
+    using System;
+    using System.Diagnostics;
+
     [DebuggerDisplay("{" + nameof(_name) + "}")]
     public class ByteStatus : IComparable<ByteStatus>
     {

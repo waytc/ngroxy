@@ -8,10 +8,10 @@
 //   ------------------------------------------------------------------------------------------------
 #endregion
 
-using System.Collections.Generic;
-
 namespace Ngroxy.Modules
 {
+    using System.Collections.Generic;
+
     public class NetworkResourcePool
     {
         public string Name { get; set; }
