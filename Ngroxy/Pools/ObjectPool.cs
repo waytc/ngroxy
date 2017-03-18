@@ -45,7 +45,7 @@ namespace Ngroxy.Pools
         
         protected void Initialize()
         {
-            for (int i = 0; i < MinCount; i++)
+            for (var i = 0; i < MinCount; i++)
                 try
                 {
                     var m = Create();

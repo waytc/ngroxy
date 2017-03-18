@@ -13,16 +13,20 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using DotNetty.Buffers;
+using DotNetty.Common.Internal.Logging;
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
+using Microsoft.Extensions.Logging;
 using Ngroxy.Modules;
 using NLog;
+using NLog.Extensions.Logging;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Ngroxy.Handlers.Socks.V4
 {
     public class Socks4ServerHandler : ChannelHandlerAdapter
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.GetCurrentClassLogger();
         private static readonly IPAddress IPZero = IPAddress.Parse("0.0.0.1");
 
         /// <inheritdoc />
@@ -64,7 +68,7 @@ namespace Ngroxy.Handlers.Socks.V4
                     bb.Port = port;
                     useSelfPort = true;
                 }
-                Logger.Info("v4域名：{0}", domain);
+                Logger.LogInformation("v4 domain：{0}", domain);
                 context.Channel.Pipeline.Replace(this, nameof(TcpTransfer),
                     new TcpTransfer(context.Channel, bb));
                 var response = context.Allocator.Buffer();

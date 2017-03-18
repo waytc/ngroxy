@@ -320,8 +320,8 @@ namespace MiscUtil.Conversion
             // HACK: This always assumes four parts, each in their own endianness,
             // starting with the first part at the start of the byte array.
             // On the other hand, there's no real format specified...
-            int[] parts = new int[4];
-            for (int i=0; i < 4; i++)
+            var parts = new int[4];
+            for (var i=0; i < 4; i++)
             {
                 parts[i] = ToInt32(value, startIndex+i*4);
             }
@@ -335,9 +335,9 @@ namespace MiscUtil.Conversion
         /// <returns>An array of bytes with length 16.</returns>
         public byte[] GetBytes(decimal value)
         {
-            byte[] bytes = new byte[16];
-            int[] parts = decimal.GetBits(value);
-            for (int i=0; i < 4; i++)
+            var bytes = new byte[16];
+            var parts = decimal.GetBits(value);
+            for (var i=0; i < 4; i++)
             {
                 CopyBytesImpl(parts[i], 4, bytes, i*4);
             }
@@ -353,8 +353,8 @@ namespace MiscUtil.Conversion
         /// <param name="index">The first index into the array to copy the bytes into</param>
         public void CopyBytes(decimal value, byte[] buffer, int index)
         {
-            int[] parts = decimal.GetBits(value);
-            for (int i=0; i < 4; i++)
+            var parts = decimal.GetBits(value);
+            for (var i=0; i < 4; i++)
             {
                 CopyBytesImpl(parts[i], 4, buffer, i*4+index);
             }
@@ -371,7 +371,7 @@ namespace MiscUtil.Conversion
         /// <param name="bytes">The number of significant bytes to return</param>
         byte[] GetBytes(long value, int bytes)
         {
-            byte[] buffer = new byte[bytes];
+            var buffer = new byte[bytes];
             CopyBytes(value, bytes, buffer, 0);
             return buffer;
         }

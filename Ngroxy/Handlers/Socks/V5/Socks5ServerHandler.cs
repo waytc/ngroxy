@@ -14,16 +14,20 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using DotNetty.Buffers;
+using DotNetty.Common.Internal.Logging;
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
+using Microsoft.Extensions.Logging;
 using Ngroxy.Modules;
 using NLog;
+using NLog.Extensions.Logging;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Ngroxy.Handlers.Socks.V5
 {
     public class Socks5ServerHandler : ChannelHandlerAdapter
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = InternalLoggerFactory.DefaultFactory.GetCurrentClassLogger();
 
         private State _state;
         private readonly Socks5AuthMethod _authMethod = Socks5AuthMethod.NoAuth;
@@ -96,7 +100,7 @@ namespace Ngroxy.Handlers.Socks.V5
                             useSelfPort = true;
                             bb.Port = port;
                         }
-                        Logger.Info("v5域名：{0}", domain);
+                        Logger.LogInformation("v5 domain：{0}", domain);
                         context.Channel.Pipeline.Replace(this, nameof(TcpTransfer),
                             new TcpTransfer(context.Channel, bb));
                         var response = context.Allocator.Buffer();
