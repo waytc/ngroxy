@@ -184,6 +184,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestCrypting.cs" />
     <Compile Include="UnitTestGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
