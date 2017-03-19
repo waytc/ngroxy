@@ -48,7 +48,7 @@ namespace NgroxyTest
             graph.AddEdge(new Edge<Node>(d, c));
             graph.AddEdge(new Edge<Node>(b, d));
 
-            var mm = Abc(graph, a, c);
+//            var mm = Abc(graph, a, c);
         }
 
         public Edge<Node> Abc(BidirectionalGraph<Node, Edge<Node>> grpah, Node source, Node target)
