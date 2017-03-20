@@ -92,6 +92,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Numerics" />
@@ -109,6 +110,7 @@
   <ItemGroup>
     <Compile Include="Codes\NgroxyMessageDecoder.cs" />
     <Compile Include="Codes\NgroxyMessageEncoder.cs" />
+    <Compile Include="CustomBootstrap.cs" />
     <Compile Include="Extensions\Logging\ConfigureExtensions.cs" />
     <Compile Include="Extensions\Logging\NLogLogger.cs" />
     <Compile Include="Extensions\Logging\NLogLoggerProvider.cs" />
