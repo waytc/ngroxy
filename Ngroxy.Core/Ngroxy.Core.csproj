@@ -113,6 +113,7 @@
     <Compile Include="Extensions\Logging\NLogLogger.cs" />
     <Compile Include="Extensions\Logging\NLogLoggerProvider.cs" />
     <Compile Include="Extensions\Logging\NLogProviderOptions.cs" />
+    <Compile Include="Handlers\Hprose\HproseHandler.cs" />
     <Compile Include="Handlers\NgroxyHandler.cs" />
     <Compile Include="Handlers\NgroxyServerHandler.cs" />
     <Compile Include="Handlers\Socks\ByteStatus.cs" />
