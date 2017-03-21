@@ -21,7 +21,9 @@ namespace Ngroxy
     using DotNetty.Transport.Channels;
     using DotNetty.Transport.Channels.Sockets;
     using Microsoft.Extensions.Logging;
-    using Ngroxy.Handlers.Socks;
+    using Ngroxy.Handlers;
+    using Ngroxy.Handlers.Hprose;
+    using Ngroxy.Modules;
     using NLog.Extensions.Logging;
 
     public class CustomBootstrap : ServerBootstrap
@@ -33,11 +35,14 @@ namespace Ngroxy
 
         public CustomBootstrap()
         {
+            var ngroxyEngine = new NgroxyEngine();
+            var hproseHandler = new HproseHandler(ngroxyEngine);
+            hproseHandler.Add(ngroxyEngine);
             Group(_bossGroup, _workerGroup);
             ChannelFactory(() => new TcpServerSocketChannel(AddressFamily.InterNetwork));
             Option(ChannelOption.SoBacklog, 1024);
             Handler(new LoggingHandler("Service-listen"));
-            ChildHandler(new ActionChannelInitializer<ISocketChannel>(channel => { channel.Pipeline.AddLast(new SocksServerHandler()); }));
+            ChildHandler(new ActionChannelInitializer<ISocketChannel>(channel => { channel.Pipeline.AddLast(new NgroxyServerHandler(hproseHandler)); }));
         }
 
         public void Run()

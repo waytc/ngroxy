@@ -14,13 +14,16 @@ namespace Ngroxy.Handlers
 {
     using System.Linq;
     using DotNetty.Buffers;
+    using DotNetty.Codecs;
     using DotNetty.Common.Internal.Logging;
     using DotNetty.Transport.Channels;
     using Microsoft.Extensions.Logging;
     using Ngroxy.Codes;
+    using Ngroxy.Handlers.Hprose;
     using Ngroxy.Handlers.Socks;
     using Ngroxy.Handlers.Socks.V4;
     using Ngroxy.Handlers.Socks.V5;
+    using Ngroxy.Modules;
 
     public class NgroxyServerHandler : ChannelHandlerAdapter
     {
@@ -29,7 +32,15 @@ namespace Ngroxy.Handlers
 
         private static readonly byte[] Ngroxy = {0x4E, 0x67, 0x72, 0x6F, 0x78, 0x79};
 
+        private readonly HproseHandler _hproseHandler;
+
+        public NgroxyServerHandler(HproseHandler hproseHandler)
+        {
+            _hproseHandler = hproseHandler;
+        }
+
         private IByteBuffer _cumulation;
+
         /// <inheritdoc />
         public override void ChannelRead(IChannelHandlerContext context, object message)
         {
@@ -58,9 +69,10 @@ namespace Ngroxy.Handlers
                     if (IsNgroxyProtocol(buffer))
                     {
                         buffer.SkipBytes(Ngroxy.Length);
-                        context.Channel.Pipeline.AddFirst(new NgroxyMessageDecoder());
-                        context.Channel.Pipeline.AddFirst(new NgroxyMessageEncoder());
-                        context.Channel.Pipeline.Replace(this, nameof(NgroxyHandler), new NgroxyHandler());
+                        context.Channel.Pipeline.Remove(this);
+                        context.Channel.Pipeline.AddLast(new LengthFieldPrepender(4));
+                        context.Channel.Pipeline.AddLast(new LengthFieldBasedFrameDecoder(int.MaxValue, 0, sizeof(int), 0, 4));
+                        context.Channel.Pipeline.AddLast(_hproseHandler);
                     }
                     else
                     {

@@ -11,19 +11,37 @@
 namespace Ngroxy.Modules
 {
     using System.Collections.Generic;
+    using Hprose.Common;
+    using Ngroxy.Handlers.Hprose;
 
-    public class NgroxyEngine
+    public class NgroxyEngine:IHproseContextFatory
     {
         public const byte Version = 0x01;
         public User User { get; set; }
         public ICollection<User> Users { get; set; }
-        
-        public void PipeIn(NgroxyContext context, Packet packet)
+
+        private NgroxyContext GetCurrentContext()
         {
+            if (User == null)
+                return null;
+            return null;
         }
 
-        public void PipeOut(NgroxyContext context, Packet packet)
+        public void Login(string username, string password)
         {
+            var context = GetCurrentContext();
         }
+
+        public void Logout()
+        {
+
+        }
+
+
+        HproseContext IHproseContextFatory.Create()
+        {
+            return null;
+        }
+
     }
 }

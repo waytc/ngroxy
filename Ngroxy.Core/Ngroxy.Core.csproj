@@ -21,7 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Ngroxy.Core.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +31,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Ngroxy.Core.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -116,7 +118,8 @@
     <Compile Include="Extensions\Logging\NLogLoggerProvider.cs" />
     <Compile Include="Extensions\Logging\NLogProviderOptions.cs" />
     <Compile Include="Handlers\Hprose\HproseHandler.cs" />
-    <Compile Include="Handlers\NgroxyHandler.cs" />
+    <Compile Include="Handlers\Hprose\HproseClientHandler.cs" />
+    <Compile Include="Handlers\Hprose\IHproseContextFatory.cs" />
     <Compile Include="Handlers\NgroxyServerHandler.cs" />
     <Compile Include="Handlers\Socks\ByteStatus.cs" />
     <Compile Include="Handlers\Socks\SocksProtocolVersion.cs" />
@@ -170,7 +173,6 @@
     <None Include="app.config" />
     <None Include="MiscUtil\Conversion\README.md" />
     <None Include="MiscUtil\README.md" />
-    <None Include="Ngroxy.Core.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

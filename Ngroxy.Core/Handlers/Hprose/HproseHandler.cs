@@ -26,6 +26,14 @@ namespace Ngroxy.Handlers.Hprose
     /// </summary>
     public class HproseHandler : HproseService, IChannelHandler
     {
+        private readonly IHproseContextFatory _fatory;
+        public HproseHandler()
+        {
+        }
+        public HproseHandler(IHproseContextFatory fatory)
+        {
+            _fatory = fatory;
+        }
 
         /// <inheritdoc />
         public override HproseMethods GlobalMethods => gMethods ?? (gMethods = new HproseTcpListenerMethods());
@@ -42,6 +50,8 @@ namespace Ngroxy.Handlers.Hprose
         /// <inheritdoc />
         public void ChannelInactive(IChannelHandlerContext context) => context.FireChannelInactive();
 
+        private HproseContext CreateContext() => _fatory?.Create() ?? new HproseContext();
+
         /// <inheritdoc />
         public void ChannelRead(IChannelHandlerContext context, object message)
         {
@@ -51,7 +61,8 @@ namespace Ngroxy.Handlers.Hprose
             input.Release();
             using (istream)
             {
-                var hproseContext = new HproseContext();
+                var hproseContext = CreateContext();
+
                 var oStream = Handle(istream, null, hproseContext);
                 using (oStream)
                 {
