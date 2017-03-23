@@ -62,16 +62,5 @@ namespace NgroxyTest
             [SimpleMode(true)]
             int Inc();
         }
-
-        public void TestFilter()
-        {
-            var client = HproseClient.Create("tcp://127.0.0.1:4321");
-            client.Filter = new MyClientFilter();
-            IStub stub = client.UseService<IStub>();
-            Console.WriteLine(stub.Inc());
-            Console.WriteLine(stub.Inc());
-            Console.WriteLine(stub.Inc());
-            Console.WriteLine(stub.Inc());
-        }
     }
 }

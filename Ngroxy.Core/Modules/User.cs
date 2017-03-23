@@ -17,17 +17,16 @@ namespace Ngroxy.Modules
 
     public class User
     {
-        public int ID { get; set; }
+        public INgroxyEngine NgroxyEngine { get; set; }
 
-        [NotNull]
+        public int ID { get; set; }
+        
         public string Name { get;}
 
         public ICollection<Group> Groups { get; set; }
 
-        public User(string name)
+        public User()
         {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name is null or white space.");
-            Name = name;
         }
 
         public ICollection<NetworkResource> NetworkResources { get; set; }

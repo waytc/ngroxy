@@ -13,7 +13,7 @@
 namespace Ngroxy.Modules
 {
     using DotNetty.Transport.Channels;
-    using Hprose.Common;
+    using global::Hprose.Common;
 
     public class NgroxyContext : HproseContext
     {

@@ -20,6 +20,7 @@ namespace Ngroxy.Handlers.Hprose
     using DotNetty.Transport.Channels;
     using global::Hprose.Common;
     using global::Hprose.Server;
+    using Ngroxy.Hprose;
 
     /// <summary>
     /// High Performance Remote Object Service Engine For DotNetty.

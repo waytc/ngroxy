@@ -119,7 +119,6 @@
     <Compile Include="Extensions\Logging\NLogProviderOptions.cs" />
     <Compile Include="Handlers\Hprose\HproseHandler.cs" />
     <Compile Include="Handlers\Hprose\HproseClientHandler.cs" />
-    <Compile Include="Handlers\Hprose\IHproseContextFatory.cs" />
     <Compile Include="Handlers\NgroxyServerHandler.cs" />
     <Compile Include="Handlers\Socks\ByteStatus.cs" />
     <Compile Include="Handlers\Socks\SocksProtocolVersion.cs" />
@@ -136,6 +135,9 @@
     <Compile Include="Handlers\Socks\V5\Socks5CommandType.cs" />
     <Compile Include="Handlers\Socks\V5\Socks5ServerHandler.cs" />
     <Compile Include="Handlers\TcpTransfer.cs" />
+    <Compile Include="Hprose\HproseClientHandler.cs" />
+    <Compile Include="Hprose\HproseServerHandler.cs" />
+    <Compile Include="Hprose\IHproseContextFatory.cs" />
     <Compile Include="MiscUtil\Conversion\BigEndianBitConverter.cs" />
     <Compile Include="MiscUtil\Conversion\EndianBitConverter.cs" />
     <Compile Include="MiscUtil\Conversion\Endianness.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Modules\Entities\User.cs" />
     <Compile Include="Modules\Extensions\PacketExtensions.cs" />
     <Compile Include="Modules\Group.cs" />
+    <Compile Include="Modules\INgroxyEngine.cs" />
     <Compile Include="Modules\IPipe.cs" />
     <Compile Include="Modules\NetworkResource.cs" />
     <Compile Include="Modules\NetworkResourcePool.cs" />
@@ -168,6 +171,8 @@
     <Compile Include="Pools\IObjectPool.cs" />
     <Compile Include="Pools\ObjectPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transport\Channel.cs" />
+    <Compile Include="Transport\NgroxyChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

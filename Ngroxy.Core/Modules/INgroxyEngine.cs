@@ -1,18 +1,20 @@
 ﻿#region summary
 //   ------------------------------------------------------------------------------------------------
-//   <copyright file="IHproseContextFatory.cs">
+//   <copyright file="INgroxyEngine.cs">
 //     用户：朱宏飞
-//     日期：2017/03/21
-//     时间：19:48
+//     日期：2017/03/22
+//     时间：12:26
 //   </copyright>
 //   ------------------------------------------------------------------------------------------------
 #endregion
-namespace Ngroxy.Handlers.Hprose
+namespace Ngroxy.Modules
 {
-    using global::Hprose.Common;
-
-    public interface IHproseContextFatory
+    public interface INgroxyEngine
     {
-        HproseContext Create();
+        string GetPublicKey(bool isDirect = true);
+
+        string Login(string username, string password);
+
+        string Logout();
     }
 }
